@@ -7,7 +7,7 @@
 from random import random
 
 GuessValue = int(random() * 100)
-VariableGuess = 0
+varGuess = 0
 varGuessCount = 0
 
 print("Guess a number between 1 and 100")
@@ -15,17 +15,17 @@ print("Guess a number between 1 and 100")
 while (varGuessCount < 20):
     varGuessCount += 1
 
-    variableGuess = int(input("Your guess: "))
+    varGuess = int(input("Your guess: "))
 
-    if(variableGuess == GuessValue):
+    if(varGuess == GuessValue):
         print("You guessed it right!")
         exit()
-    elif(abs(variableGuess - GuessValue) <= 5):
-        if(variableGuess > GuessValue):
+    elif(abs(varGuess - GuessValue) <= 5):
+        if(varGuess > GuessValue):
             print("Close, too high!")
         else:
             print("Close, too low!")
-    elif(variableGuess > GuessValue):
+    elif(varGuess > GuessValue):
         print("Too high!")
     else:
         print("Too low!")
