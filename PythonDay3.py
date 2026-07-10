@@ -1,3 +1,16 @@
+#--------------------------------------------------
+# Python Perusteet - Day 3
+#   1) Enumeration
+#   2) Virheenhallinta (Try-Finally)
+#   3) CSV -tiedoston lukeminen
+#   4) Piirtäminen ja tilastot
+
+#--------------------------------------------------
+
+#--------------------------------------------------
+# 1) Enumeration
+#--------------------------------------------------
+
 # You should not use enumerate 
 # Use "normal for" instead with dictionary
 
@@ -58,7 +71,57 @@ result = enumerate("Hukkaputki",1001)
 for i,j in result:
     print(i,j)
 
-# --------------------
+#--------------------------------------------------
+# 2) Virheenhallinta - Try-Finally
+#--------------------------------------------------
+
+try:
+    # mode is w+ because we want to create new file if necessary
+    # if no file is present, file is created
+    # w+ overwrites existing content
+    fileobject = open("storagefile.txt","w+")
+
+    # write 3 lines of material
+    fileobject.write("Tupu\n")    
+    fileobject.write("Hupu\n")    
+    fileobject.write("Lupu\n")    
+
+finally:
+    fileobject.close()
+
+try:
+    # We open storagefile for reading.
+    # thus r is selected as mode
+    fileobject = open("storagefile.txt","r")
+
+    # here we read it all into list
+    # result = fileobject.readlines()
+    # print(result)
+
+    # here we read from fileobject line by line
+    for myline in fileobject:
+        print("I read: ", myline)
+
+finally:
+    fileobject.close()
+
+#--------------------------------------------------
+# 3) CSV -tiedoston lukeminen
+#--------------------------------------------------
+
+with open("testi.csv") as mycsvfile:
+    inputstream = csv.reader(mycsvfile,delimiter=";")
+    title = True
+    for row in inputstream:
+        if title:
+            print(row)
+            title = False
+        else:
+            print("{} tyäskentellöö {}".format(row[0], row[2]))
+
+#--------------------------------------------------
+# 4) Piirtäminen ja tilastot
+#--------------------------------------------------
 
 import matplotlib.pyplot as plt
 import numpy as np
